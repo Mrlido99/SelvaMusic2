@@ -36,7 +36,7 @@ def ytsearch(query):
         songname = data["title"]
         url = data["link"]
         duration = data["duration"]
-        thumbnail = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
+        thumbnail = f"{THUMB_PIC}"
         return [songname, url, duration, thumbnail]
     except Exception as e:
         print(e)
@@ -55,7 +55,7 @@ def ytsearch(query):
         songname = data["title"]
         url = data["link"]
         duration = data["duration"]
-        thumbnail = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
+        thumbnail = f"{THUMB_PIC}"
         return [songname, url, duration, thumbnail]
     except Exception as e:
         print(e)
@@ -91,22 +91,22 @@ async def play(client, m: Message):
                 await huehue.delete()
                 # await m.reply_to_message.delete()
                 await m.reply_photo(
-                    photo="https://telegra.ph/file/40c0ab31719a780e37b5c.jpg",
+                    photo="{THUMB_PIC}",
                     caption=f"""
 **🏷️ العنوان : [{songname}]({link})
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA)
 """,                )
             else:
                 await call_py.join_group_call(                    chat_id,                    AudioPiped(                        dl,                    ),                    stream_type=StreamType().pulse_stream,                )
                 add_to_queue(chat_id, songname, dl, link, "Audio", 0)
                 await huehue.delete()
                 await m.reply_photo(
-                    photo="https://telegra.ph/file/40c0ab31719a780e37b5c.jpg",
+                    photo="{THUMB_PIC}",
                     caption=f"""
 **🏷️ العنوان : [{songname}]({link})
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA)
 """,                )
 
     else:
@@ -114,7 +114,7 @@ async def play(client, m: Message):
             await m.reply("الرد على ملف صوتي أو إعطاء شيء للبحث")
         else:
             await m.delete()
-            huehue = await m.reply("🔎 جاري البحث عزيزي ")
+            huehue = await m.reply("🔎 جاري البحث  ")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             if search == 0:
@@ -126,18 +126,18 @@ async def play(client, m: Message):
                 thumbnail = search[3]
                 hm, ytlink = await ytdl(url)
                 if hm == 0:
-                    await huehue.edit(f"**عذرا هناك خطأ  ⚠️** \n\n`{ytlink}`")
+                    await huehue.edit(f"** هناك خطأ  ⚠️** \n\n`{ytlink}`")
                 else:
                     if chat_id in QUEUE:
                         pos = add_to_queue(chat_id, songname, ytlink, url, "Audio", 0)
                         await huehue.delete()
                         await m.reply_photo(
-                            photo=f"{thumbnail}",
+                            photo=f"{THUMB_PIC}",
                             caption=f"""
 **🏷️  العنوان : [{songname}]({url})
 ⏱️ مده المقطع : {duration}
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA) 
 """,
                         )
                     else:
@@ -153,12 +153,12 @@ async def play(client, m: Message):
                             await huehue.delete()
                             # await m.reply_to_message.delete()
                             await m.reply_photo(
-                                photo=f"{thumbnail}",
+                                photo=f"{THUMB_PIC}",
                                 caption=f"""
 **🏷️  العنوان : [{songname}]({url})
 ⏱️ مده المقطع : {duration}
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA)
 """,
                             )
                         except Exception as ep:
@@ -196,11 +196,11 @@ async def vplay(client, m: Message):
                 await huehue.delete()
                 # await m.reply_to_message.delete()
                 await m.reply_photo(
-                    photo="https://telegra.ph/file/40c0ab31719a780e37b5c.jpg",
+                    photo="{THUMB_PIC}",
                     caption=f"""
 **🏷️ العنوان : [{songname}]({link})
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA)
 """,
                 )
             else:
@@ -219,11 +219,11 @@ async def vplay(client, m: Message):
                 await huehue.delete()
                 # await m.reply_to_message.delete()
                 await m.reply_photo(
-                    photo="https://telegra.ph/file/40c0ab31719a780e37b5c.jpg",
+                    photo="{THUMB_PIC}",
                     caption=f"""
 **🏷️ العنوان : [{songname}]({link})
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA)
 """,                )
 
     else:
@@ -245,18 +245,18 @@ async def vplay(client, m: Message):
                 thumbnail = search[3]
                 hm, ytlink = await ytdl(url)
                 if hm == 0:
-                    await huehue.edit(f"**عذرا هناك خطأ  ⚠️** \n\n`{ytlink}`")
+                    await huehue.edit(f"** هناك خطأ  ⚠️** \n\n`{ytlink}`")
                 else:
                     if chat_id in QUEUE:
                         pos = add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
                         await huehue.delete()
                         await m.reply_photo(
-                            photo=f"{thumbnail}",
+                            photo=f"{THUMB_PIC}",
                             caption=f"""
 **🏷️  العنوان : [{songname}]({url})
 ⏱️ مده المقطع : {duration}
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA) 
 """,                        )
                     else:
                         try:
@@ -264,17 +264,17 @@ async def vplay(client, m: Message):
                             add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
                             await huehue.delete()
                             await m.reply_photo(
-                                photo=f"{thumbnail}",
+                                photo=f"{THUMB_PIC}",
                                 caption=f"""
 **🏷️  العنوان : [{songname}]({url})
 ⏱️ مده المقطع : {duration}
 💬 ايدي المحادثه : {chat_id}
-🎧 طلب من : {m.from_user.mention}**
+🎧 طلب من : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA)
 """,                            )
                         except Exception as ep:
                             await huehue.edit(f"`{ep}`")
 
-@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["اغنيه عشوائية"], prefixes=f"{HNDLR}"))
+@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["عشوائيه","بحث_اغاني"], prefixes=f"{HNDLR}"))
 @authorized_users_only
 async def playfrom(client, m: Message):
     chat_id = m.chat.id
@@ -305,19 +305,19 @@ async def playfrom(client, m: Message):
                     await call_py.join_group_call(                        chat_id,                        AudioPiped(location),                        stream_type=StreamType().pulse_stream,                    )
                     add_to_queue(chat_id, songname, location, link, "Audio", 0)
                     await m.reply_photo(
-                        photo="https://telegra.ph/file/40c0ab31719a780e37b5c.jpg",
+                        photo="{THUMB_PIC}",
                         caption=f"""
 **▶ ابدأ تشغيل الأغاني من {chat}
 🏷️ العنوان : [{songname}]({link})
 💬 المحادثه : {chat_id}
-🎧 من الطلب : {m.from_user.mention}**
+🎧 من الطلب : {m.from_user.mention}**\n\n - ➮  [𝐌𝐮𝐬𝐢𝐜 𝐒𝐞𝐥𝐯𝐚 🎵](t.me/SO_SELVA)
 """,                    )
             await hmm.delete()
-            await m.reply(                f"➕ يضيف {lmt} أغنية في قائمة الانتظار \n• ارسل {HNDLR}التشغيل_التلقائي لاضاف اغنيه في القائمه الانتضار**"            )
+            await m.reply(                f"➕ يضيف {lmt} أغنية في قائمة الانتظار \n• ارسل {HNDLR}تلقائي لاضاف اغنيه في القائمه الانتضار**"            )
         except Exception as e:
             await hmm.edit(f"**هناك خطا ** \n`{e}`")
 
-@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["التشغيل التلقائي", "queue"], prefixes=f"{HNDLR}"))
+@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["قائمه", "queue"], prefixes=f"{HNDLR}"))
 @authorized_users_only
 async def playlist(client, m: Message):
     chat_id = m.chat.id
@@ -336,8 +336,8 @@ async def playlist(client, m: Message):
                 QUE = QUE + "\n" + f"**#{x}** - [{hmm}]({hmmm}) | `{hmmmm}`\n"
             await m.reply(QUE, disable_web_page_preview=True)
     else:
-        await m.reply("**❌ لايوجد هناك تشغيل تالي**")
-@Client.on_message(filters.user(SUDO_USERS) & filters.command(["التالي"], prefixes=f"{HNDLR}"))
+        await m.reply("** لايوجد اغنيه بعدها**")
+@Client.on_message(filters.user(SUDO_USERS) & filters.command(["تقدم","تخطي","سكب"], prefixes=f"{HNDLR}"))
 @authorized_users_only
 async def skip(client, m: Message):
     await m.delete()
@@ -345,9 +345,9 @@ async def skip(client, m: Message):
     if len(m.command) < 2:
         op = await skip_current_song(chat_id)
         if op == 0:
-            await m.reply("**❌ لا يوجد شيء في قائمة الانتظار لتخطيه !**")
+            await m.reply("**- لا شي بقائمه الانتظار .**")
         elif op == 1:
-            await m.reply("قائمة انتظار فارغة ، مغادرة الدردشة الصوتية**")
+            await m.reply("قائمه الانتظار فارغه ، تم الخروج من المكالمه .**")
         else:
             await m.reply(                f"**⏭ تخطي التشغيل ** \n**🎧 التشغيل الان** - [{op[0]}]({op[1]}) | `{op[2]}`",                disable_web_page_preview=True,            )
     else:
@@ -376,12 +376,12 @@ async def stop(client, m: Message):
         try:
             await call_py.leave_group_call(chat_id)
             clear_queue(chat_id)
-            await m.reply("**✅ تم ايقاف التشغيل بنجاح **")
+            await m.reply("**- تم الايقاف وخروج المكالمه ينجاح .**")
         except Exception as e:
             await m.reply(f"**هناك خطأ ** \n`{e}`")
     else:
-        await m.reply("**❌ لايوجد هناك اغنيه شغاله !**")
-@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["استئناف"], prefixes=f"{HNDLR}"))
+        await m.reply("**- لا يوجد اغاني قيد التشغيل**")
+@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["مؤقت","وقف"], prefixes=f"{HNDLR}"))
 @authorized_users_only
 async def pause(client, m: Message):
     await m.delete()
@@ -389,12 +389,12 @@ async def pause(client, m: Message):
     if chat_id in QUEUE:
         try:
             await call_py.pause_stream(chat_id)
-            await m.reply(                f"**⏸ تم إيقاف التشغيل مؤقتًا.**\n\n• يمكنك ارجاع التشغيل بواسطه ارسال امر  » `{HNDLR}ايقاف_الاستئناف`"            )
+            await m.reply(                f"**⏸ تم إيقاف التشغيل مؤقتًا.**\n\n• يمكنك متابعه التشغيل بواسطه ارسال امر  » `{HNDLR}متابعه`"            )
         except Exception as e:
             await m.reply(f"**هناك خطأ ** \n`{e}`")
     else:
-        await m.reply("** ❌ لايوجد اغنيه مشتغله !**") 
-@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["ايقاف_الاستئناف"], prefixes=f"{HNDLR}"))
+        await m.reply("**- لايوجد شيء قيد التشغيل**") 
+@Client.on_message(    filters.user(SUDO_USERS) & filters.command(["متابعه","كمل"], prefixes=f"{HNDLR}"))
 @authorized_users_only
 async def resume(client, m: Message):
     await m.delete()
@@ -406,6 +406,6 @@ async def resume(client, m: Message):
         except Exception as e:
             await m.reply(f"**هناك خطأ ** \n`{e}`")
     else:
-        await m.reply("**❌ لا شيء متوقف مؤقتا حاليا !**")
+        await m.reply("**- لايوجد شيء قيد التشغيل**")
 
 
