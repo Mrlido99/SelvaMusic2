@@ -7,7 +7,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import HNDLR, SUDO_USERS, OWNER_NAME, OWNER, PING_PIC
-
+from MusicTelethon.helpers.decorators import authorized_users_only
 START_TIME = datetime.utcnow()
 TIME_DURATION_UNITS = (
     ("**Sat**", 60 * 60 * 24 * 7),
