@@ -30,6 +30,7 @@ async def _human_time_duration(seconds):
 
 
 @Client.on_message(filters.command(["بنق","تيست","ping"], prefixes=f"{HNDLR}"))
+@authorized_users_only
 async def ping(client, m: Message):
     await m.delete()
     start = time()
@@ -45,6 +46,7 @@ async def ping(client, m: Message):
 @Client.on_message(
     filters.user(SUDO_USERS) & filters.command(["restart","سيلفا","ريستارت"], prefixes=f"{HNDLR}")
 )
+@authorized_users_only
 async def restart(client, m: Message):
     await m.delete()
     mada = await m.reply("**مرحباً عزيزي المالك\n⌯ جار اعادة تشغيل البوت 1**")
@@ -62,6 +64,7 @@ async def restart(client, m: Message):
 
 
 @Client.on_message(filters.command(["اوامر","اغاني"], prefixes=f"{HNDLR}"))
+@authorized_users_only
 async def help(client, m: Message):
     await m.delete()
     HEPZ = f"""
@@ -110,6 +113,7 @@ async def help(client, m: Message):
 
 
 @Client.on_message(filters.command(["السورس","سورس","المالك","المطور"], prefixes=f"{HNDLR}"))
+@authorized_users_only
 async def repo(client, m: Message):
     await m.delete()
     REPZ = f"""
